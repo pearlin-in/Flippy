@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BerryFlash - Strawberry Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Short+Stack&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header class="header-thing">
+            <div class="title-area">
+                <h1><i class="fas fa-stroopwafel strawberry-icon"></i> FLIPPY</h1>
+                <p class="subtitle">Strawberry shortcake flash cards!</p>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button active" data-page="study">Study</button>
+                <button class="nav-button" data-page="sets">My Sets</button>
+                <button class="nav-button" data-page="create">Make New</button>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <!-- Study Page -->
+            <div id="study-page" class="page active">
+                <div class="study-top">
+                    <h2 id="current-set-title">Pick a set to start studying!</h2>
+                    <div class="study-buttons">
+                        <button id="shuffle-btn" class="study-btn"><i class="fas fa-random"></i> Mix 'em up</button>
+                        <button id="reset-btn" class="study-btn"><i class="fas fa-redo"></i> Start over</button>
+                    </div>
+                </div>
+                
+                <div class="card-holder">
+                    <div id="flashcard" class="flashy-card">
+                        <div class="card-inside">
+                            <div class="card-front">
+                                <div class="card-stuff">
+                                    <p class="card-term">Choose a flashcard set to begin</p>
+                                    <p class="small-text">(Click or tap to flip)</p>
+                                </div>
+                                <div class="strawberry-decoration"></div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-stuff">
+                                    <p class="card-definition">The answer will be here!</p>
+                                    <p class="small-text">(Click or tap to flip back)</p>
+                                </div>
+                                <div class="strawberry-decoration flipped-berry"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-area">
+                        <div class="feedback wrong" data-feedback="wrong">
+                            <i class="fas fa-times"></i>
+                            <span>Oopsie!</span>
+                        </div>
+                        <div class="feedback right" data-feedback="right">
+                            <i class="fas fa-check"></i>
+                            <span>Yummy!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-info">
+                    <p id="card-counter">Card 0 of 0</p>
+                    <div class="progress-bar-thing">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="button-row">
+                    <button id="prev-btn" class="nav-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button id="flip-btn" class="nav-btn flip-btn">Flip Card</button>
+                    <button id="next-btn" class="nav-btn">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Sets Page -->
+            <div id="sets-page" class="page">
+                <div class="page-top">
+                    <h2>My Flashcard Sets</h2>
+                    <button id="create-new-set" class="action-button"><i class="fas fa-plus"></i> New Set</button>
+                </div>
+                
+                <div id="sets-container" class="sets-box">
+                    <!-- Sets go here -->
+                </div>
+            </div>
+
+            <!-- Create/Edit Page -->
+            <div id="create-page" class="page">
+                <div class="page-top">
+                    <h2 id="create-title">Make a New Set</h2>
+                    <button id="back-to-sets" class="action-button"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                
+                <form id="set-form" class="set-form-thing">
+                    <div class="input-group">
+                        <label for="set-name">Set Name</label>
+                        <input type="text" id="set-name" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="set-description">Description (if you want)</label>
+                        <input type="text" id="set-description">
+                    </div>
+                    
+                    <h3>Flashcards</h3>
+                    
+                    <div id="cards-list" class="cards-list-area">
+                        <!-- Cards go here -->
+                    </div>
+                    
+                    <button type="button" id="add-card" class="add-card-button"><i class="fas fa-plus"></i> Add Another Card</button>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="save-button">Save Set</button>
+                        <button type="button" id="cancel-edit" class="cancel-button">Nevermind</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Popup for deleting -->
+    <div id="confirm-popup" class="popup-thing">
+        <div class="popup-content">
+            <h3>Wait, really delete?</h3>
+            <p>Are you sure? This can't be undone!</p>
+            <div class="popup-buttons">
+                <button id="confirm-delete" class="delete-btn">Yes, delete</button>
+                <button id="cancel-delete" class="cancel-btn">No, keep it</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

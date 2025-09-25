@@ -1,0 +1,739 @@
+/* Strawberry Shortcake vibes! */
+:root {
+    --pink: #ff9bb3;
+    --light-pink: #ffd1dc;
+    --dark-pink: #e75480;
+    --red: #ff6b6b;
+    --green: #a8e6cf;
+    --yellow: #ffd93d;
+    --cream: #fff5e1;
+    --brown: #8b4513;
+    --text-color: #5a3e36;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Short Stack', 'Comic Neue', cursive;
+}
+
+body {
+    background: linear-gradient(135deg, var(--light-pink) 0%, var(--pink) 100%);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 15px;
+}
+
+.app-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 8px solid white;
+}
+
+.header-thing {
+    background: linear-gradient(135deg, var(--pink), var(--dark-pink));
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.header-thing::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,0 Q25,10 50,0 T100,0 L100,10 L0,10 Z" fill="%23fff5e1"/></svg>');
+    background-size: 100% 100%;
+}
+
+.title-area h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0 var(--dark-pink);
+}
+
+.strawberry-icon {
+    color: var(--red);
+    text-shadow: 1px 1px 0 white;
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.nav-button {
+    background: rgba(255,255,255,0.3);
+    color: white;
+    border: 2px solid white;
+    padding: 8px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.nav-button:hover, .nav-button.active {
+    background: white;
+    color: var(--dark-pink);
+}
+
+.content-area {
+    padding: 20px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Study page styles */
+.study-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.study-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.study-btn {
+    background: var(--green);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.study-btn:hover {
+    background: #8fd3b4;
+    transform: translateY(-2px);
+}
+
+.card-holder {
+    position: relative;
+    margin: 30px 0;
+    perspective: 1000px;
+    height: 300px;
+}
+
+.flashy-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.flashy-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-inside {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 30px;
+    border: 5px solid white;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #fff 0%, var(--light-pink) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-back {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--dark-pink) 100%);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.card-stuff {
+    text-align: center;
+    z-index: 2;
+}
+
+.card-term, .card-definition {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Strawberry decoration */
+.strawberry-decoration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 60px;
+    height: 70px;
+    background: var(--red);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: rotate(15deg);
+}
+
+.strawberry-decoration::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    width: 10px;
+    height: 20px;
+    background: var(--green);
+    border-radius: 5px;
+}
+
+.strawberry-decoration::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 5px;
+    height: 5px;
+    background: var(--cream);
+    border-radius: 50%;
+    box-shadow: 15px 0 var(--cream), 30px 5px var(--cream), 10px 15px var(--cream), 25px 15px var(--cream);
+}
+
+.flipped-berry {
+    top: 10px;
+    left: 10px;
+    bottom: auto;
+    right: auto;
+    transform: rotate(-15deg);
+}
+
+.feedback-area {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.feedback {
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.feedback.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feedback.wrong {
+    background: var(--red);
+}
+
+.feedback.right {
+    background: var(--green);
+    color: var(--text-color);
+}
+
+.progress-info {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#card-counter {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.progress-bar-thing {
+    height: 10px;
+    background: var(--light-pink);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--pink), var(--dark-pink));
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 12px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.nav-btn:hover {
+    background: var(--dark-pink);
+    transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-btn.flip-btn {
+    background: var(--yellow);
+    color: var(--text-color);
+}
+
+.nav-btn.flip-btn:hover {
+    background: #e6c235;
+}
+
+/* Sets page styles */
+.page-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.action-button {
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.action-button:hover {
+    background: var(--dark-pink);
+    transform: translateY(-2px);
+}
+
+.sets-box {
+    display: grid;
+    gap: 15px;
+}
+
+.set-item {
+    background: white;
+    border: 2px solid var(--light-pink);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.set-item:hover {
+    border-color: var(--pink);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.set-item::before {
+    content: "☆";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--yellow);
+    color: var(--text-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.set-info h3 {
+    margin-bottom: 5px;
+    color: var(--dark-pink);
+}
+
+.set-info p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.set-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.set-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.set-actions .edit-btn {
+    color: var(--pink);
+}
+
+.set-actions .edit-btn:hover {
+    background: rgba(255, 155, 179, 0.1);
+}
+
+.set-actions .delete-btn {
+    color: var(--red);
+}
+
+.set-actions .delete-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-color);
+}
+
+.empty-message i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--light-pink);
+}
+
+/* Create page styles */
+.set-form-thing {
+    max-width: 600px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--dark-pink);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--light-pink);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Short Stack', cursive;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--pink);
+}
+
+.cards-list-area {
+    margin: 20px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.card-item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    border: 2px solid var(--light-pink);
+}
+
+.card-inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-inputs input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Short Stack', cursive;
+}
+
+.remove-card {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    transition: all 0.3s;
+}
+
+.remove-card:hover {
+    background: #ff5252;
+    transform: scale(1.1);
+}
+
+.add-card-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--green);
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.add-card-button:hover {
+    background: #8fd3b4;
+    transform: translateY(-2px);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.save-button {
+    flex: 1;
+    padding: 12px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.save-button:hover {
+    background: var(--dark-pink);
+    transform: translateY(-2px);
+}
+
+.cancel-button {
+    padding: 12px 20px;
+    background: #ccc;
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+    background: #b3b3b3;
+}
+
+/* Popup styles */
+.popup-thing {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-thing.active {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    border: 5px solid var(--light-pink);
+}
+
+.popup-content h3 {
+    margin-bottom: 10px;
+    color: var(--dark-pink);
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.delete-btn {
+    padding: 10px 20px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    background: #ccc;
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.cancel-btn:hover {
+    background: #b3b3b3;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header-thing {
+        padding: 15px;
+    }
+    
+    .title-area h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .study-top, .page-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .button-row {
+        flex-direction: column;
+    }
+    
+    .card-term, .card-definition {
+        font-size: 1.5rem;
+    }
+    
+    .card-holder {
+        height: 250px;
+    }
+    
+    .set-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .set-actions {
+        align-self: flex-end;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+}
